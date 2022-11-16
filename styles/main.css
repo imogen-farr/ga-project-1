@@ -1,0 +1,178 @@
+.head-box {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 50px;
+  color: rgb(181, 138, 138);
+  display: flex;
+  justify-content: center;
+}
+
+.main-background {
+  height: 500px;
+  width: 500px;
+ 
+  background-size: cover;
+  background-position: center;
+}
+
+body {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.rules-box {
+  display: flex;
+  justify-content: center;
+  height: 50px;
+  border: 2psx solid black;
+  font-size: 30px;
+  font-style: oblique;
+  font-weight: bold;
+}
+
+.start {
+  display: flex;
+  justify-content: center;
+  margin-left: 630px;
+  border-radius: 40px;
+  height: 100px;
+  width: 150px;
+  background-color:azure;
+  border: 3px solid black;
+  display: flex;
+  align-content: center;
+  padding-top: 40px;
+  font-family: 'Courier New', Courier, monospace;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+p {
+  display: flex;
+  justify-content: center;
+}
+
+.randomColour {
+  display: flex;
+  justify-content: center;
+}
+
+.unknown {
+  height: 50px;
+  width: 50px;
+  margin: 10px;
+  border: 2px solid black;
+  background-image: url(https: //media.giphy.com/media/3ov9k1019qXdHnohvG/giphy.gif);
+}
+
+.mystery {
+  position: relative;
+}
+
+
+.gameBoard {
+  margin-left: 300px;
+}
+
+
+.peg {
+  display: flex;
+  height: 100px;
+  width: 100px;
+  border: 2px solid black;
+  background-color: lightgray;
+  margin-top: 10px;
+  font-size: 30px;
+  margin-right: 10px;
+}
+
+.feedback {
+  text-decoration: underline;
+  margin-left: 370px;
+  margin-top: 20px;
+}
+
+
+.gameBoard {
+  display: flex;
+}
+
+.start {
+  color: blue
+}
+
+
+.colourOptions {
+  display: grid;
+  grid-template-columns: repeat(2,100px);
+  grid-template-rows: repeat(3, 100px);
+  width: 200px;
+  height: 300px;
+  border: 5px solid black;
+  margin: 0 auto;
+}
+
+.selectedColour {
+  display: grid;
+  grid-template-columns: repeat(4, 50px);
+  grid-template-rows: repeat(1, 50px);
+  width: 200px;
+  height:  50px;
+  border: 5px solid black;
+  margin: 0 auto;
+  margin-top: 10px;
+  background-color: white;
+}
+
+.hiddenColour {
+  background-color: black;
+}
+
+.submit {
+  width: 200px;
+  height: 50px;
+  margin: 0 auto;
+  margin-top: 10px;
+  font-size: 30px;
+  text-align: center;
+  margin-left: 500px;
+  margin-top: -50px;
+  color: black;
+}
+
+.sideBoard {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-content: center;
+  margin-left: 100px;
+  position: absolute;
+  float: right;
+  margin-left: 600px;
+  margin-top: -160px;
+}
+
+.red {
+  background-color: red;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.orange {
+  background-color: orange;
+}
+
+.green {
+  background-color: green;
+}
+
+.purple {
+  background-color: purple;
+}
+
+.black {
+  background-color: black;
+}
+
+
+

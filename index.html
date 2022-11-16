@@ -2,13 +2,75 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <script src="/scripts/app.js"></script>
-  <style src="/styles/main.css"></style>
+  <script src="scripts/app.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="styles/main.css">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Mastermind</title>
 </head>
+
 <body>
+  <img class="main-background" src="/styles/pexels-dapo-abideen-5677459.jpg">
+  <div class="heading">
+    <box class="head-box">Welcome to MASTERMIND!</box>
+  </div>
+
+  <div class="rules">
+    <box class="rules-box">Here are the rules...</box>
+  </div>
   
+  <button class="start">start game</button>
+
+
+<!-- page 2 -->
+
+<p>The computer has picked 4 colours... </p>
+
+<div class="randomColour">
+  <img class="unknown" src="https://media.giphy.com/media/3ov9k1019qXdHnohvG/giphy.gif">
+  <img class="unknown" src="https://media.giphy.com/media/3ov9k1019qXdHnohvG/giphy.gif">
+  <img class="unknown" src="https://media.giphy.com/media/3ov9k1019qXdHnohvG/giphy.gif">
+  <img class="unknown" src="https://media.giphy.com/media/3ov9k1019qXdHnohvG/giphy.gif">
+
+</div>
+
+<section class="game">
+
+<div class="gameBoard">
+<div class="peg" id="peg1">1</div>
+<div class="peg" id="peg2">2</div>
+<div class="peg" id="peg3">3</div>
+<div class="peg" id="peg4">4</div>
+</div>
+
+<div class="feedback">FEEDBACK
+  <div class="correct">CORRECT COLOURS, CORRECT PLACE:</div>
+  <div class="almost">CORRECT COLOURS, WRONG PLACE:</div>
+</div>
+
+<div class="sideBoard">
+
+  <div class="colourOptions">
+    <button class="red colour" id="red"></button>
+    <button class="blue colour" id="blue"></button>
+    <button class="orange colour" id="orange"></button>
+    <button class="green colour" id="green"></button>
+    <button class="purple colour" id="purple"></button>
+    <button class="black colour" id="black"></button>
+  </div>
+
+  <div class="selectedColour"></div>
+  <button class="submit">SUBMIT</button>
+</div>
+</section>
+
+
+
 </body>
+
+
+
+
+
+
 </html>
