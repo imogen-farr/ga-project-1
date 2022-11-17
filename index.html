@@ -10,13 +10,20 @@
 </head>
 
 <body>
-  <img class="main-background" src="/styles/pexels-dapo-abideen-5677459.jpg">
   <div class="heading">
     <box class="head-box">Welcome to MASTERMIND!</box>
   </div>
 
-  <div class="rules">
-    <box class="rules-box">Here are the rules...</box>
+  <box class="rules-box">
+    <div class="rules-header">RULES</div>
+    <div class="rules">
+      <p>1.When you click START GAME, the computer will generate a sequence of four coloured boxes.</p>
+      <p>2. Your job is to crack the sequence!</p>
+      <p>3. Select colours from the colour board to submit your guess.</p>
+      <p>4. Use the computer feedback to help with your next guess.</p>
+
+    </div>
+    </box>
   </div>
   
   <button class="start">start game</button>
@@ -24,15 +31,18 @@
 
 <!-- page 2 -->
 
-<p>The computer has picked 4 colours... </p>
+<box class="computerSeq">
+
+<p class="text">The computer has picked 4 colours... </p>
 
 <div class="randomColour">
-  <img class="unknown" src="https://media.giphy.com/media/3ov9k1019qXdHnohvG/giphy.gif">
-  <img class="unknown" src="https://media.giphy.com/media/3ov9k1019qXdHnohvG/giphy.gif">
-  <img class="unknown" src="https://media.giphy.com/media/3ov9k1019qXdHnohvG/giphy.gif">
-  <img class="unknown" src="https://media.giphy.com/media/3ov9k1019qXdHnohvG/giphy.gif">
-
+  
+  <iframe class="unknown" allow="autoplay; gyroscope;" src="https://www.kapwing.com/e/637505f990d546001190cbc9"></iframe>
+  <iframe class="unknown" allow="autoplay; gyroscope;" src="https://www.kapwing.com/e/637505f990d546001190cbc9"></iframe>
+  <iframe class="unknown" allow="autoplay; gyroscope;" src="https://www.kapwing.com/e/637505f990d546001190cbc9"></iframe>
+  <iframe class="unknown" allow="autoplay; gyroscope;" src="https://www.kapwing.com/e/637505f990d546001190cbc9"></iframe>
 </div>
+</box>
 
 <section class="game">
 
@@ -42,6 +52,8 @@
 <div class="peg" id="peg3">3</div>
 <div class="peg" id="peg4">4</div>
 </div>
+
+<button class="check">CHECK</button>
 
 <div class="feedback">FEEDBACK
   <div class="correct">CORRECT COLOURS, CORRECT PLACE:</div>

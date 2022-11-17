@@ -4,57 +4,48 @@ function init() {
   const startGame = document.querySelector(".start");
   const colourOptions = ["red", "blue", "orange", "green", "purple", "black"];
 
-  const choices = Object.keys(colourOptions);
-
   function makeChoice() {
-    return choices[Math.floor(Math.random() * 4)];
+    return colourOptions[Math.floor(Math.random() * colourOptions.length)];
   }
 
-  startGame.addEventListener("click", makeChoice);
+  function makeComputerChoices() {
+    const computerChoices = {
+      firstChoice: makeChoice(),
+      secondChoice: makeChoice(),
+      thirdChoice: makeChoice(),
+      fourthChoice: makeChoice(),
+    };
+    const computerChoicesArray = Object.values(computerChoices);
+    console.log(computerChoicesArray, "object into array");
+  }
 
-  // console.log(makeChoice);
+
+
+  startGame.addEventListener("click", makeComputerChoices);
   //
+
+  //START GAME CLICK
+  function changeStartColour() {
+    startGame.style.background = "grey";
+  }
+
+  startGame.addEventListener("click", changeStartColour);
 
   // SELECT COLOUR OPTION:
 
-  const redBtn = document.querySelector("#red");
-  const blueBtn = document.querySelector("#blue");
-  const orangeBtn = document.querySelector("#orange");
-  const greenBtn = document.querySelector("#green");
-  const purpleBtn = document.querySelector("#purple");
-  const blackBtn = document.querySelector("#black");
-
+  const colourButtons = document.querySelectorAll(".colour");
   const background = document.querySelector(".selectedColour");
 
-  function fillRed() {
-    background.classList.add("red");
+  let userChoice;
+  function fillBackground(event) {
+    console.log(event.target.id);
+    background.classList.add(event.target.id);
+    userChoice = event.target.id;
   }
-  redBtn.addEventListener("click", fillRed);
 
-  function fillBlue() {
-    background.classList.add("blue");
-  }
-  blueBtn.addEventListener("click", fillBlue);
-
-  function fillOrange() {
-    background.classList.add("orange");
-  }
-  orangeBtn.addEventListener("click", fillOrange);
-
-  function fillGreen() {
-    background.classList.add("green");
-  }
-  greenBtn.addEventListener("click", fillGreen);
-
-  function fillPurple() {
-    background.classList.add("purple");
-  }
-  purpleBtn.addEventListener("click", fillPurple);
-
-  function fillBlack() {
-    background.classList.add("black");
-  }
-  blackBtn.addEventListener("click", fillBlack);
+  colourButtons.forEach((button) => {
+    button.addEventListener("click", fillBackground);
+  });
 
   //
 
@@ -66,23 +57,86 @@ function init() {
   const thirdChoice = document.querySelector("#peg3");
   const fourthChoice = document.querySelector("#peg4");
 
-  function fillFirstPeg() {
-    if (background.classList.contains("red")) {
-      firstChoice.style.backgroundColor = "red";
-    } else if (background.style.backgroundColor === "blue") {
-      firstChoice.style.backgroundColor = "blue";
-    } else if (background.style.backgroundColor === "orange") {
-      firstChoice.style.backgroundColor = "orange";
-    } else if (background.style.backgroundColor === "green") {
-      firstChoice.style.backgroundColor = "green";
-    } else if (background.style.backgroundColor === "purple") {
-      firstChoice.style.backgroundColor = "purple";
-    } else if (background.style.backgroundColor === "black") {
-      firstChoice.style.backgroundColor = "black";
+  function resetBackground() {
+    background.className = "selectedColour";
+  }
+
+  let currentPeg = 1;
+  function fillPeg() {
+    if (currentPeg === 1) {
+      firstChoice.classList.add(userChoice);
+      const first = userChoice;
+      console.log(first);
+      playerAnswers.push(first)
+      resetBackground();
+      currentPeg++;
+    } else if (currentPeg === 2) {
+      secondChoice.classList.add(userChoice);
+      const second = userChoice;
+      console.log(second);
+      playerAnswers.push(second);
+      resetBackground();
+      currentPeg++;
+    } else if (currentPeg === 3) {
+      thirdChoice.classList.add(userChoice);
+      const third = userChoice;
+      console.log(third);
+      playerAnswers.push(third);
+      resetBackground();
+      currentPeg++;
+    } else if (currentPeg === 4) {
+      fourthChoice.classList.add(userChoice);
+      const fourth = userChoice;
+      console.log(fourth);
+      playerAnswers.push(fourth);
+      resetBackground();
+      currentPeg++;
     }
   }
 
-  submit.addEventListener("click", fillFirstPeg);
+  submit.addEventListener("click", fillPeg);
+
+
+  const playerAnswers = []
+
+  //CHECK GAME CLICK
+  const check = document.querySelector(".check");
+
+  function changeCheckColour() {
+    check.style.background = "grey";
+  }
+
+  check.addEventListener("click", changeCheckColour);
+
+  // SUBMIT MY SEQUENCE AND COMPARE
+  const peg1 = document.querySelector("#peg1");
+  const peg2 = document.querySelector("#peg2.background");
+  const peg3 = document.querySelector("#peg3.background");
+  const peg4 = document.querySelector("#peg4.background");
+
+  function compareAnswers() {
+    console.log("Player answers: ", playerAnswers);
+
+    
+    
+    const isSubset = (playerAnswers, computerChoicesArray) =>
+      computerChoicesArray.every((element) => playerAnswers.includes(element));
+
+    console.log("comparing 2 arrays", isSubset);
+
+
+
+
+
+
+  }
+
+  check.addEventListener("click", compareAnswers);
+
+  
+  //
+
+  
 }
 
 window.addEventListener("DOMContentLoaded", init);
