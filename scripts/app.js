@@ -1,4 +1,5 @@
 function init() {
+
   // GENERATE RANDOM COLOURS:
 
   const startGame = document.querySelector(".start");
@@ -8,20 +9,23 @@ function init() {
     return colourOptions[Math.floor(Math.random() * colourOptions.length)];
   }
 
+
+  const computerChoices = [
+    makeChoice(),
+    makeChoice(),
+    makeChoice(),
+    makeChoice()
+  ];
+
   function makeComputerChoices() {
-    const computerChoices = {
-      firstChoice: makeChoice(),
-      secondChoice: makeChoice(),
-      thirdChoice: makeChoice(),
-      fourthChoice: makeChoice(),
-    };
-    const computerChoicesArray = Object.values(computerChoices);
-    console.log(computerChoicesArray, "object into array");
+    console.log("computer choices: ", computerChoices);
   }
 
-
+  console.log("computer choices: ", makeComputerChoices);
+  
 
   startGame.addEventListener("click", makeComputerChoices);
+
   //
 
   //START GAME CLICK
@@ -108,6 +112,13 @@ function init() {
 
   check.addEventListener("click", changeCheckColour);
 
+  //CLICK 'TRY AGAIN' :
+  //CLEAR THE PEGS 
+
+
+
+
+
   // SUBMIT MY SEQUENCE AND COMPARE
   const peg1 = document.querySelector("#peg1");
   const peg2 = document.querySelector("#peg2.background");
@@ -115,28 +126,79 @@ function init() {
   const peg4 = document.querySelector("#peg4.background");
 
   function compareAnswers() {
-    console.log("Player answers: ", playerAnswers);
+    console.log(computerChoices, playerAnswers);
+    const matches = computerChoices.map((choice, index) => {
+      if (choice === playerAnswers[index]) {
+        playerAnswers[index] = "done";
+        computerChoices[index] = "computer-done";
+        return { choice: choice, match: "full" };
+      } else if (playerAnswers.indexOf(choice) !== -1) {
+        playerAnswers[playerAnswers.indexOf(choice)] = "done";
+        computerChoices[index] = "computer-done";
+        return { choice: choice, match: "partial" };
+      } else {
+        playerAnswers[index] = "done";
+        computerChoices[index] = "computer-done";
+        return { choice: choice, match: "none" };
+      }
+    });
+    console.log("matches: ", matches);
+  }
+  check.addEventListener("click", compareAnswers);
 
-    
-    
-    const isSubset = (playerAnswers, computerChoicesArray) =>
-      computerChoicesArray.every((element) => playerAnswers.includes(element));
-
-    console.log("comparing 2 arrays", isSubset);
 
 
+  // YOU WIN POP UP
+
+  // const result = document.getElementById("result");
+
+  // function winGame() {
+  //   if (computerChoices === playerAnswers) { //CHECK THIS LINE!
+  //     result.innerHTML = "YOU WIN!";
+  //     result.style.backgroundColor = rgb(211, 175, 54);
+  //   }
+  // }
+  // check.addEventListener("click", winGame);
+
+  //
 
 
 
+  // RESET THE GAME 
+  const resetButton = document.querySelector(".reset");
+
+  // function resetGame() {
+  //   startGame.style.background = "white";
+  //   check.style.background = "white";
+  //   firstChoice.style.background = "white";
+  //   secondChoice.style.background = "white";
+  //   thirdChoice.style.background = "white";
+  //   fourthChoice.style.background = "white";
+  // }
+
+  function resetGame() {
+    console.log("NEW GAME: ", makeComputerChoices);
 
   }
 
-  check.addEventListener("click", compareAnswers);
+  resetButton.addEventListener("click", resetGame);
+
 
   
-  //
+
 
   
+
+
+
+
+
+
+
+
+
+
+
 }
 
 window.addEventListener("DOMContentLoaded", init);

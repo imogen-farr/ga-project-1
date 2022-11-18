@@ -11,16 +11,16 @@
 
 <body>
   <div class="heading">
-    <box class="head-box">Welcome to MASTERMIND!</box>
+    <box class="head-box">MASTERMIND</box>
   </div>
 
   <box class="rules-box">
     <div class="rules-header">RULES</div>
     <div class="rules">
       <p>1.When you click START GAME, the computer will generate a sequence of four coloured boxes.</p>
-      <p>2. Your job is to crack the sequence!</p>
-      <p>3. Select colours from the colour board to submit your guess.</p>
-      <p>4. Use the computer feedback to help with your next guess.</p>
+      <p>2.Your job is to crack the sequence!</p>
+      <p>3.Select colours from the colour board to submit your guess.</p>
+      <p>4.Use the computer feedback to help with your next guess.</p>
 
     </div>
     </box>
@@ -47,13 +47,14 @@
 <section class="game">
 
 <div class="gameBoard">
-<div class="peg" id="peg1">1</div>
-<div class="peg" id="peg2">2</div>
-<div class="peg" id="peg3">3</div>
-<div class="peg" id="peg4">4</div>
+<div class="peg" id="peg1"></div>
+<div class="peg" id="peg2"></div>
+<div class="peg" id="peg3"></div>
+<div class="peg" id="peg4"></div>
 </div>
 
-<button class="check">CHECK</button>
+<button class="check" id="checkBox">CHECK</button>
+<button class="tryAgain" id="tryAgain">TRY AGAIN</button>
 
 <div class="feedback">FEEDBACK
   <div class="correct">CORRECT COLOURS, CORRECT PLACE:</div>
@@ -72,10 +73,15 @@
   </div>
 
   <div class="selectedColour"></div>
-  <button class="submit">SUBMIT</button>
+  <button class="submit">SUBMIT COLOUR</button>
 </div>
 </section>
 
+<box class="result.box">
+  <p id="result"></p>
+</box>
+
+<button class="reset">RESET GAME</button>
 
 
 </body>
