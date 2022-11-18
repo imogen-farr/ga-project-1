@@ -140,7 +140,7 @@ p {
 }
 
 .feedback {
-  text-decoration: underline;
+  text-decoration: none;
   margin-left: 370px;
   margin-top: 80px;
 }
@@ -215,7 +215,7 @@ p {
   position: absolute;
   float: right;
   margin-left: 900px;
-  margin-top: -290px;
+  margin-top: -320px;
   position: absolute;
 }
 
@@ -228,7 +228,7 @@ p {
 }
 
 .orange {
-  background-color: orange;
+  background-color: rgb(246, 119, 27);
 }
 
 .green {
@@ -241,6 +241,10 @@ p {
 
 .black {
   background-color: black;
+}
+
+.grey {
+  background-color: gray;
 }
 
 
@@ -271,4 +275,17 @@ p {
   font-weight: bold;
   opacity: 0.6;
   height: 50px;
+}
+
+.correct, .almost {
+  font-size: 25px;
+  text-decoration: none ;
+  font-weight: bold;
+  margin-left: -100px;
+  color: rgb(245, 214, 104);
+}
+
+.almost {
+  margin-top: 15px;
+  color: rgb(232, 164, 184);
 }

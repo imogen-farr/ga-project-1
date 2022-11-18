@@ -1,20 +1,20 @@
 function init() {
-
   // GENERATE RANDOM COLOURS:
 
   const startGame = document.querySelector(".start");
+  const correct = document.querySelector(".correct span");
+  const almost = document.querySelector(".almost span");
   const colourOptions = ["red", "blue", "orange", "green", "purple", "black"];
 
   function makeChoice() {
     return colourOptions[Math.floor(Math.random() * colourOptions.length)];
   }
 
-
-  const computerChoices = [
+  let computerChoices = [
     makeChoice(),
     makeChoice(),
     makeChoice(),
-    makeChoice()
+    makeChoice(),
   ];
 
   function makeComputerChoices() {
@@ -22,7 +22,6 @@ function init() {
   }
 
   console.log("computer choices: ", makeComputerChoices);
-  
 
   startGame.addEventListener("click", makeComputerChoices);
 
@@ -30,7 +29,7 @@ function init() {
 
   //START GAME CLICK
   function changeStartColour() {
-    startGame.style.background = "grey";
+    startGame.classList.add("grey");
   }
 
   startGame.addEventListener("click", changeStartColour);
@@ -71,7 +70,7 @@ function init() {
       firstChoice.classList.add(userChoice);
       const first = userChoice;
       console.log(first);
-      playerAnswers.push(first)
+      playerAnswers.push(first);
       resetBackground();
       currentPeg++;
     } else if (currentPeg === 2) {
@@ -100,23 +99,16 @@ function init() {
 
   submit.addEventListener("click", fillPeg);
 
-
-  const playerAnswers = []
+  let playerAnswers = [];
 
   //CHECK GAME CLICK
   const check = document.querySelector(".check");
 
   function changeCheckColour() {
-    check.style.background = "grey";
+    check.classList.add("grey");
   }
 
   check.addEventListener("click", changeCheckColour);
-
-  //CLICK 'TRY AGAIN' :
-  //CLEAR THE PEGS 
-
-
-
 
 
   // SUBMIT MY SEQUENCE AND COMPARE
@@ -126,27 +118,42 @@ function init() {
   const peg4 = document.querySelector("#peg4.background");
 
   function compareAnswers() {
-    console.log(computerChoices, playerAnswers);
-    const matches = computerChoices.map((choice, index) => {
-      if (choice === playerAnswers[index]) {
-        playerAnswers[index] = "done";
-        computerChoices[index] = "computer-done";
-        return { choice: choice, match: "full" };
-      } else if (playerAnswers.indexOf(choice) !== -1) {
-        playerAnswers[playerAnswers.indexOf(choice)] = "done";
-        computerChoices[index] = "computer-done";
-        return { choice: choice, match: "partial" };
-      } else {
-        playerAnswers[index] = "done";
-        computerChoices[index] = "computer-done";
-        return { choice: choice, match: "none" };
-      }
-    });
-    console.log("matches: ", matches);
+    console.log("before loops: ", playerAnswers, computerChoices);
+    const fullMatches = playerAnswers
+      .map((choice, index) => {
+        if (choice === computerChoices[index]) {
+          return { colour: choice, index, match: "full" };
+        }
+      })
+      .filter((i) => !!i);
+
+    const indexesToRemove = fullMatches.map((i) => i.index);
+    playerAnswers = playerAnswers.filter(
+      (_colour, index) => !indexesToRemove.includes(index)
+    );
+    computerChoices = computerChoices.filter(
+      (_colour, index) => !indexesToRemove.includes(index)
+    );
+
+    console.log("after filter: ", playerAnswers, computerChoices);
+    const partialMatches = playerAnswers
+      .map((choice) => {
+        if (computerChoices.indexOf(choice) !== -1) {
+          return { colour: choice, match: "partial" };
+        } else {
+          return { colour: choice, match: "none" };
+        }
+      })
+      .filter((i) => !!i);
+
+    console.log([...fullMatches, ...partialMatches]);
+    correct.innerHTML = fullMatches.length;
+    almost.innerHTML = partialMatches.filter(
+      (i) => i.match === "partial"
+    ).length;
   }
+
   check.addEventListener("click", compareAnswers);
-
-
 
   // YOU WIN POP UP
 
@@ -162,43 +169,63 @@ function init() {
 
   //
 
-
-
-  // RESET THE GAME 
+  // RESET THE GAME
   const resetButton = document.querySelector(".reset");
 
-  // function resetGame() {
-  //   startGame.style.background = "white";
-  //   check.style.background = "white";
-  //   firstChoice.style.background = "white";
-  //   secondChoice.style.background = "white";
-  //   thirdChoice.style.background = "white";
-  //   fourthChoice.style.background = "white";
-  // }
-
-  function resetGame() {
-    console.log("NEW GAME: ", makeComputerChoices);
-
+  function resetGame(e) {
+    e.preventDefault();
+    startGame.className = "start";
+    check.className = "check";
+    firstChoice.className = "peg";
+    secondChoice.className = "peg";
+    thirdChoice.className = "peg";
+    fourthChoice.className = "peg";
   }
 
   resetButton.addEventListener("click", resetGame);
 
 
+  // TRY AGAIN 
+
+  const tryAgainButton = document.querySelector(".tryAgain");
+
+  function tryAgain(e) {
+    e.preventDefault();
+    check.className = "check";
+    firstChoice.className = "peg";
+    secondChoice.className = "peg";
+    thirdChoice.className = "peg";
+    fourthChoice.className = "peg";
   
 
+    correct.innerHTML = " ";
+    almost.innerHTML = " ";
+    
+  }
 
-  
-
-
-
-
-
-
-
-
+  tryAgainButton.addEventListener("click", tryAgain);
 
 
 
 }
 
 window.addEventListener("DOMContentLoaded", init);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
