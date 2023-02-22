@@ -5,27 +5,21 @@ function init() {
   const correct = document.querySelector(".correct span");
   const almost = document.querySelector(".almost span");
   const colourOptions = ["red", "blue", "orange", "green", "purple", "black"];
+  let userChoice;
+  let playerAnswers = [];
 
   function makeChoice() {
     return colourOptions[Math.floor(Math.random() * colourOptions.length)];
   }
 
-  let computerChoices = [
-    makeChoice(),
-    makeChoice(),
-    makeChoice(),
-    makeChoice(),
-  ];
+  let computerChoices;
 
   function makeComputerChoices() {
+    computerChoices = [makeChoice(), makeChoice(), makeChoice(), makeChoice()];
     console.log("computer choices: ", computerChoices);
   }
 
-  console.log("computer choices: ", makeComputerChoices);
-
   startGame.addEventListener("click", makeComputerChoices);
-
-  //
 
   //START GAME CLICK
   function changeStartColour() {
@@ -39,11 +33,11 @@ function init() {
   const colourButtons = document.querySelectorAll(".colour");
   const background = document.querySelector(".selectedColour");
 
-  let userChoice;
   function fillBackground(event) {
-    console.log(event.target.id);
+    console.log("calling fill background with: ", event.target.id);
     background.classList.add(event.target.id);
     userChoice = event.target.id;
+    console.log("userChoice becomes: ", userChoice);
   }
 
   colourButtons.forEach((button) => {
@@ -66,40 +60,27 @@ function init() {
 
   let currentPeg = 1;
   function fillPeg() {
+    playerAnswers.push(userChoice);
     if (currentPeg === 1) {
       firstChoice.classList.add(userChoice);
-      const first = userChoice;
-      console.log(first);
-      playerAnswers.push(first);
       resetBackground();
       currentPeg++;
     } else if (currentPeg === 2) {
       secondChoice.classList.add(userChoice);
-      const second = userChoice;
-      console.log(second);
-      playerAnswers.push(second);
       resetBackground();
       currentPeg++;
     } else if (currentPeg === 3) {
       thirdChoice.classList.add(userChoice);
-      const third = userChoice;
-      console.log(third);
-      playerAnswers.push(third);
       resetBackground();
       currentPeg++;
     } else if (currentPeg === 4) {
       fourthChoice.classList.add(userChoice);
-      const fourth = userChoice;
-      console.log(fourth);
-      playerAnswers.push(fourth);
       resetBackground();
       currentPeg++;
     }
   }
 
   submit.addEventListener("click", fillPeg);
-
-  let playerAnswers = [];
 
   //CHECK GAME CLICK
   const check = document.querySelector(".check");
@@ -110,13 +91,7 @@ function init() {
 
   check.addEventListener("click", changeCheckColour);
 
-
   // SUBMIT MY SEQUENCE AND COMPARE
-  const peg1 = document.querySelector("#peg1");
-  const peg2 = document.querySelector("#peg2.background");
-  const peg3 = document.querySelector("#peg3.background");
-  const peg4 = document.querySelector("#peg4.background");
-
   function compareAnswers() {
     console.log("before loops: ", playerAnswers, computerChoices);
     const fullMatches = playerAnswers
@@ -172,60 +147,44 @@ function init() {
   // RESET THE GAME
   const resetButton = document.querySelector(".reset");
 
-  function resetGame(e) {
-    e.preventDefault();
+  function resetGame() {
     startGame.className = "start";
     check.className = "check";
     firstChoice.className = "peg";
     secondChoice.className = "peg";
     thirdChoice.className = "peg";
     fourthChoice.className = "peg";
+    playerAnswers = [];
+    currentPeg = 1;
+    makeComputerChoices();
+
+    correct.innerHTML = "";
+    almost.innerHTML = "";
   }
 
   resetButton.addEventListener("click", resetGame);
 
-
-  // TRY AGAIN 
+  // TRY AGAIN
 
   const tryAgainButton = document.querySelector(".tryAgain");
 
-  function tryAgain(e) {
-    e.preventDefault();
+  function tryAgain() {
     check.className = "check";
     firstChoice.className = "peg";
     secondChoice.className = "peg";
     thirdChoice.className = "peg";
     fourthChoice.className = "peg";
-  
+    playerAnswers = [];
+    currentPeg = 1;
 
-    correct.innerHTML = " ";
-    almost.innerHTML = " ";
-    
+    correct.innerHTML = "";
+    almost.innerHTML = "";
   }
 
   tryAgainButton.addEventListener("click", tryAgain);
-
-
-
 }
 
 window.addEventListener("DOMContentLoaded", init);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
